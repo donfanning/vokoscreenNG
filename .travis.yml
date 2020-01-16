@@ -8,7 +8,7 @@ before_install:
   - sudo apt-get update -qq
   
 install:
-  - sudo apt-get -y install qt512x11extras qt512multimedia qt512tools qt512translations libx11-dev libgstreamer1.0-dev libgl1-mesa-dev
+  - sudo apt-get -y install qt512x11extras qt512multimedia qt512tools qt512translations libx11-dev libgstreamer1.0-dev libgl1-mesa-dev imagemagick
   - source /opt/qt*/bin/qt*-env.sh
   
 script:
@@ -16,6 +16,7 @@ script:
   - qmake CONFIG+=release PREFIX=/usr
   - make -j$(nproc)
   - make INSTALL_ROOT=appdir -j$(nproc) install ; find appdir/
+  - mogrify -resize 256x256 applications/vokoscreenNG.png # FIXME: Icon in the repo is non-standard size
   - wget -c -nv https://github.com/$(wget -q https://github.com/probonopd/go-appimage/releases -O - | grep "appimagetool-.*-x86_64.AppImage" | head -n 1 | cut -d '"' -f 2)
   - chmod +x ./appimagetool-*.AppImage
   - ./appimagetool-*.AppImage deploy appdir/usr/share/applications/*.desktop
