@@ -152,3 +152,19 @@ include(loadExtensions/loadExtensions.pri)
 
 # systrayAlternative
 include(systrayAlternative/systrayAlternative.pri)
+
+linux-g++ {
+    isEmpty(PREFIX) {
+        PREFIX = /usr
+    }
+    target.path = $$PREFIX/bin
+
+    desktop.path = $$PREFIX/share/applications/
+    desktop.files += applications/vokoscreenNG.desktop
+    icon256.path = $$PREFIX/share/icons/hicolor/256x256/apps
+    icon256.files += applications/vokoscreenNG.png
+
+    INSTALLS += icon256
+    INSTALLS += desktop
+    INSTALLS += target
+}
