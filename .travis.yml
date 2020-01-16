@@ -20,6 +20,7 @@ script:
   - cp applications/vokoscreenNG.png appdir/
   - wget -c -nv https://github.com/$(wget -q https://github.com/probonopd/go-appimage/releases -O - | grep "appimagetool-.*-x86_64.AppImage" | head -n 1 | cut -d '"' -f 2)
   - chmod +x ./appimagetool-*.AppImage
+  - mkdir -p appdir/usr/lib/x86_64-linux-gnu/gstreamer-1.0/ ; cp /usr/lib/x86_64-linux-gnu/gstreamer-1.0/* appdir/usr/lib/x86_64-linux-gnu/gstreamer-1.0/ # FIXME: Should go-appimage do this?
   - ./appimagetool-*.AppImage deploy appdir/usr/share/applications/*.desktop
   - ( cd appdir/usr/bin ;  ln -s ../../opt/qt512/plugins/* . ) # FIXME: Probably a bug in go-appimage makes this needed for now
   - ./appimagetool-*.AppImage appdir/
