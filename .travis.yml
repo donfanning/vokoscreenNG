@@ -8,7 +8,7 @@ before_install:
   - sudo apt-get update -qq
   
 install:
-  - sudo apt-get -y install qt512x11extras qt512multimedia qt512tools qt512translations libx11-dev libgstreamer1.0-dev libgl1-mesa-dev imagemagick
+  - sudo apt-get -y install gstreamer1.0-plugins-base qt512x11extras qt512multimedia qt512tools qt512translations libx11-dev libgstreamer1.0-dev libgl1-mesa-dev imagemagick
   - source /opt/qt*/bin/qt*-env.sh
   
 script:
