@@ -5,11 +5,12 @@ dist: xenial
 
 before_install:
   - sudo apt-add-repository 'deb http://archive.ubuntu.com/ubuntu xenial main universe multiverse restricted' -y
+  - sudo add-apt-repository ppa:djcj/tools -y
   - sudo add-apt-repository ppa:beineri/opt-qt-5.12.6-xenial -y
   - sudo apt-get update -qq
   
 install:
-  - sudo apt-get -y install x264 gstreamer1.0-* qt512x11extras qt512multimedia qt512tools qt512translations qt512svg qt512imageformats libx11-dev libgstreamer1.0-dev libgl1-mesa-dev imagemagick
+  - sudo apt-get -y install x264 openh264 gstreamer1.0-* qt512x11extras qt512multimedia qt512tools qt512translations qt512svg qt512imageformats libx11-dev libgstreamer1.0-dev libgl1-mesa-dev imagemagick
   - source /opt/qt*/bin/qt*-env.sh
   
 script:
