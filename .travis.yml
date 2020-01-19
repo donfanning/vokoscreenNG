@@ -22,8 +22,11 @@ script:
   - chmod +x ./appimagetool-*.AppImage
   - mkdir -p appdir/usr/lib/x86_64-linux-gnu/gstreamer-1.0/ ; cp -r /usr/lib/x86_64-linux-gnu/gstreamer-1.0/* appdir/usr/lib/x86_64-linux-gnu/gstreamer-1.0/ # FIXME: Should go-appimage do this?
   - ./appimagetool-*.AppImage deploy appdir/usr/share/applications/*.desktop -s=true
-  - ( cd appdir/usr/bin ;  ln -s ../../opt/qt512/plugins/* . ) # FIXME: Probably a bug in go-appimage makes this needed for now
-  - chmod +x appdir/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-plugin-scanner # Why is this needed?
+  - ( cd appdir/usr/bin ;  ln -s ../../opt/qt512/plugins/* . ) # FIXME in go-appimage
+  - rm appdir/usr/lib/x86_64-linux-gnu/gstreamer-1.0/libgstclutter-3.0.so # FIXME in go-appimage
+  - rm appdir/usr/lib/x86_64-linux-gnu/libva-x11.so.1 # FIXME in go-appimage
+  - rm appdir/usr/lib/x86_64-linux-gnu/gstreamer-1.0/libgstvaapi.so # FIXME in go-appimage
+  - chmod +x appdir/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-plugin-scanner # FIXME in go-appimage; why is this needed?
   - ./appimagetool-*.AppImage appdir/
   
 branches:
